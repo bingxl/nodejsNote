@@ -2,9 +2,9 @@
 let fs = require('fs');
 let path = require("path");
 let os = require('os');
-let data = fs.readFileSync('./.summary-source.md', 'utf8');
+let data = fs.readFileSync(path.join(__dirname,'./.summary-source.md'), 'utf8');
 let arr = data.split(os.EOL);
-let summary = '';
+let summary = '<!-- !此文档是从.summary-source.md生成的，请到.summary-source.md文件编辑 -->' + os.EOL;
 
 arr.forEach(item => {
     if (item.indexOf("+") !== 0) {
@@ -25,7 +25,7 @@ arr.forEach(item => {
 
 })
 
-fs.writeFile('./SUMMARY.md', summary, err => {
+fs.writeFile(path.join(__dirname,'./SUMMARY.md'), summary, err => {
     if (err) {
         console.error(err)
     } else {
