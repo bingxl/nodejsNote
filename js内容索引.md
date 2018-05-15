@@ -30,6 +30,7 @@ push, pop, shift, unshift,
 sort, reverse    
 map, reduce, reduceRight, filter, every, some, forEach  
 
+ES6新增： 
 Array.of, Array.from,   
 copyWithin    
 find, findIndex   
