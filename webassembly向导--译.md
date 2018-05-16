@@ -64,3 +64,16 @@ $ emrun --no_browser --port 8000 ./
 对于办公来说，首选的时Windows或OSX，但OSX太贵了，所以Windows用的还是挺多的，我遇到好多的工具在Windows下的使用都依赖Visual Studio，但是Visual Studio实在是太笨重了，我特别厌恶，之后遇到了WSL 即Windows子系统，在里面可以安装好几种Linux系统，用起来特别流畅，比虚拟机好用多了，我觉得这个微软的这个功能特别赞。
 
 WebAssembly文件加载常会碰都WebAssembly因为MIME 不是 wasm类型而无法编译问题，可以查看自己的服务器软件里有么有 Application/wasm类型。
+
+## nginx配置 MIME类型
+找到nginx的配置文件所在目录，我的在`/etc/nginx/`下，里面有个mime.types文件，为了不弄乱排序结构，找到 application/v**** 和 application/x****的配置项中间加一行 `application/wasm   wasm;`,保存后重启nginx `systemctl restart nginx`
+
+```
+// 配置后的一部分内容
+..................
+application/vnd.google-earth.kmz   kmz;
+application/wasm                   wasm;
+application/x-7z-compressed        7z;
+....................
+```
+使用 `curl -I url`查看服务器响应的头部信息。
