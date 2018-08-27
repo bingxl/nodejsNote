@@ -6,6 +6,7 @@ length,
 split(''),  
 slice(start, end?)      
 substring(start, end?)  
+substr(str,length)    
 trim()  
 concat()    
 toLowerCase()   
@@ -17,9 +18,9 @@ match(regexp)
 replace(search, replacement)    
 
 ES6新增： 
-codePointAt, String.fromCodePoint, at, normalize    
-includes, startsWidth, endsWidth    
-repeat, padStart, padEnd
+codePointAt(), fromCodePoint(), normalize()    
+includes(), startsWidth(), endsWidth()    
+repeat(), padStart(), padEnd(), raw()
 <!--more  -->
 
 ## 字符字面量与转义
@@ -35,18 +36,20 @@ String.fromCharCode(97, 98, 99) // 'abc'
 ## length
 字符串的length属性为字符串的长度, '稻草人'.length // 3
 
-## split, slice, substring
+## split, slice, substring, substr
 split(code, limit)将字符串转换为数组以code字符分割，limit为分隔后显示前几项
 
 slice(start, end?)从字符串中截取子字符串，start为开始位置，end为结束位置（不包含）如果没有end参数则到字符串结尾
 
-substring和slice函数一样，参数值可以为负值
+substring(start, end)和slice(start, end)函数一样，返回一个子串, 参数值可以为负值, 包含开始位置,但不包含结束位置.
+
+substr(start, length), 返回从start开始的length和字符.
 ```
 'test'.split('') ;//['t','e','s','t']
 'test'.split('', 2) //['t','e']
 'test'.slice(0,2); //'te'
 ```
-## trim, concat
+## trim, concat, trimStart, trimEnd
 trim去除字符串两侧的空格，concat把对字符串进行拼接；
 ```
 '  test   '.trim() //'test'
@@ -107,10 +110,10 @@ includes() 表示是否找到参数字符串；
 startsWidth() 表示参数是否在源字符串的头部；    
 endsWidth() 表示参数字符串是否在源字符串的尾部；    
 repeat(n) 将原字符串重复n次；   
-ES7中： 
-at() ES7中：对应于charAt(), 能识别出双字节；   
+ES7中：    
 padStart(length, str) 使用str填充到字符串头部，达到length长度；   
-padEnd(length, str) 使用str填充到字符串尾部，以达到length长度； 
+padEnd(length, str) 使用str填充到字符串尾部，以达到length长度；   
+String.raw() 对模板字符串进行处理,具体为变量替换为值, 转义未转义的反斜线
 
 ### 模板字符串
 使用 反引号\`来表示字符串模板，里面的变量使用 ${}来嵌入, ${}里可以使用表达式。
